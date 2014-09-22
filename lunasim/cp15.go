@@ -1,7 +1,17 @@
 package lunasim
 
+/*
+cp15is the system control coprocessor. It controls all of the standard memory
+and system facilities.
+ 
+*/
+
+const ncp15Reg = 16
+
 type cp15 struct {
 	domains []int
+	regs []uint32
+	cpu *CPU
 }
 
 const (
@@ -11,6 +21,41 @@ const (
 	permFaultPage     = 0xf
 )
 
-func (p *cp15) setMemoryAbort(vaddr uint32, status uint32, isWrite bool) {
+const (
+	cpIdCodes = iota
+	cpSystemConfig
+	cpPageTableCtrl
+	cpDomainAccessCtrl
+	_
+	cpFaultStatus
+	cpFaultAddress
+	cpCacheWriteBufCtrl
+	cpTLBCtrl
+	cpCacheLockdown
+	cpTLBLockdown
+	cpDMACtrl
+	_
+	cpProcessID
+	_
+	_
+)
+
+func init() {
+	if cpProcessID != 13 {
+		panic("bug")
+	}
+}
+
+func (p *cp15) setMemoryAbort(vaddr, status uint32, isWrite bool) {
 	panic("todo")
 }
+
+func newCp15(cpu *CPU) *cp15 {
+	ret := new(cp15)
+	ret.regs = make([]uint32, ncp15Reg)
+	ret.cpu = cpu
+
+	return ret
+}
+
+
