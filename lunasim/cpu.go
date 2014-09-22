@@ -56,3 +56,7 @@ func NewCPU() *CPU {
 
 	return ret
 }
+
+func (cpu *CPU) isPriviledged() bool {
+	panic("todo")
+}
