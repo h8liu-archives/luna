@@ -1,4 +1,4 @@
-package asm
+package arm
 
 const (
 	CondEQ = 0   // z set

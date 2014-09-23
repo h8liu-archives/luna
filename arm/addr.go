@@ -1,4 +1,4 @@
-package asm
+package arm
 
 const (
 	pwMask   = 0x9

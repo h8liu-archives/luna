@@ -1,4 +1,4 @@
-package asm
+package arm
 
 const (
 	R0  = 0

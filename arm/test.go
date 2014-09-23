@@ -1,21 +1,23 @@
-package asm
+package arm
 
 import (
 	"bytes"
 	"encoding/binary"
 	"fmt"
+	"testing"
 )
 
-func MainTest() {
+func makeTestBinary(t *testing.T) []byte {
 	buf := new(bytes.Buffer)
 	b := make([]byte, 4)
 	w := func(expect, i uint32) {
 		fmt.Printf("%08x\n", i)
 		binary.LittleEndian.PutUint32(b, i)
 		buf.Write(b)
-		if i != expect {
-			panic(fmt.Sprintf("expect %08x, got %08x\n",
-				expect, i))
+		if t != nil {
+			if expect != i {
+				t.Errorf("expect %08x, got %08x", expect, i)
+			}
 		}
 	}
 
@@ -50,4 +52,10 @@ func MainTest() {
 
 	// [data]
 	w(0x20200000, 0x20200000)
+
+	return buf.Bytes()
+}
+
+func MakeTestBinary() []byte {
+	return makeTestBinary(nil)
 }

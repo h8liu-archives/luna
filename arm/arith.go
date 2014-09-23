@@ -1,4 +1,4 @@
-package asm
+package arm
 
 const (
 	ShSLLImm = 0

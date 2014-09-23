@@ -1,4 +1,4 @@
-package asm
+package arm
 
 func BranchOffset(i int32) uint32 {
 	return uint32(i)
