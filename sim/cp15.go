@@ -1,4 +1,4 @@
-package lunasim
+package sim
 
 /*
 cp15is the system control coprocessor. It controls all of the standard memory

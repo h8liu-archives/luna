@@ -1,4 +1,4 @@
-package lunasim
+package sim
 
 import (
 	"fmt"
