@@ -17,14 +17,14 @@ const (
 
 // shiftIm creates the shift-operand with immediate
 // ro is the ammount to rotate right
-func shiftIm(im, ro uint32) uint32 {
+func ShiftIm(im, ro uint32) uint32 {
 	return ((ro & 0xf) << 8) | (im & 0xff) | (0x1 << 25)
 }
 
 // shiftReg creates the shift-operand that uses registers
 // sh/rs is the amount to shift
 // rm is the register
-func shiftReg(mode, rm, sh, rs uint32) uint32 {
+func ShiftReg(mode, rm, sh, rs uint32) uint32 {
 	if mode == ShReg || mode == ShRotCarry {
 		sh = 0
 	}
@@ -65,7 +65,7 @@ const (
 // bitS is set when the flags will be affected
 // rn is the first input register
 // rd is the output result register
-func arith(cond, op, bitS, rn, rd, sh uint32) uint32 {
+func Arith(cond, op, bitS, rn, rd, sh uint32) uint32 {
 	ret := cond << condShift
 
 	switch op {
@@ -86,7 +86,7 @@ func arith(cond, op, bitS, rn, rd, sh uint32) uint32 {
 }
 
 // mutiply
-func mul(cond, bitS, rd, rs, rm uint32) uint32 {
+func Mul(cond, bitS, rd, rs, rm uint32) uint32 {
 	ret := cond << condShift
 	ret |= 0x9 << 4
 	ret |= (bitS & 0x1) << 20

@@ -20,33 +20,33 @@ func MainTest() {
 	}
 
 	// [code]
-	w(0xe59f0040, mem(CondAL, 1, 1, 0, pwOffset, r0, pc, addrImm(64)))
-	w(0xe3a01001, arith(CondAL, OpMov, 0, 0, r1, shiftIm(1, 0)))
-	w(0xe1a01901, arith(CondAL, OpMov, 0, 0, r1, shiftReg(ShSLLImm, r1, 18, 0)))
-	w(0xe5801004, mem(CondAL, 0, 1, 0, pwOffset, r1, r0, addrImm(4)))
-	w(0xe3a01001, arith(CondAL, OpMov, 0, 0, r1, shiftIm(1, 0)))
-	w(0xe1a01801, arith(CondAL, OpMov, 0, 0, r1, shiftReg(ShSLLImm, r1, 16, 0)))
+	w(0xe59f0040, Mem(CondAL, 1, 1, 0, PWOffset, R0, PC, AddrImm(64)))
+	w(0xe3a01001, Arith(CondAL, OpMov, 0, 0, R1, ShiftIm(1, 0)))
+	w(0xe1a01901, Arith(CondAL, OpMov, 0, 0, R1, ShiftReg(ShSLLImm, R1, 18, 0)))
+	w(0xe5801004, Mem(CondAL, 0, 1, 0, PWOffset, R1, R0, AddrImm(4)))
+	w(0xe3a01001, Arith(CondAL, OpMov, 0, 0, R1, ShiftIm(1, 0)))
+	w(0xe1a01801, Arith(CondAL, OpMov, 0, 0, R1, ShiftReg(ShSLLImm, R1, 16, 0)))
 
 	// loop:
-	w(0xe5801028, mem(CondAL, 0, 1, 0, pwOffset, r1, r0, addrImm(40)))
-	w(0xe3a0283f, arith(CondAL, OpMov, 0, 0, r2, shiftIm(0x3f, 8)))
+	w(0xe5801028, Mem(CondAL, 0, 1, 0, PWOffset, R1, R0, AddrImm(40)))
+	w(0xe3a0283f, Arith(CondAL, OpMov, 0, 0, R2, ShiftIm(0x3f, 8)))
 
 	// wait1:
-	w(0xe2422001, arith(CondAL, OpSub, 0, r2, r2, shiftIm(1, 0)))
-	w(0xe3520000, arith(CondAL, OpCmp, 1, r2, 0, shiftIm(0, 0)))
-	w(0x1afffffc, branch(CondNE, 0, branchOffset(-4))) // wait1
+	w(0xe2422001, Arith(CondAL, OpSub, 0, R2, R2, ShiftIm(1, 0)))
+	w(0xe3520000, Arith(CondAL, OpCmp, 1, R2, 0, ShiftIm(0, 0)))
+	w(0x1afffffc, Branch(CondNE, 0, BranchOffset(-4))) // wait1
 
-	w(0xe580101c, mem(CondAL, 0, 1, 0, pwOffset, r1, r0, addrImm(28)))
-	w(0xe3a0283f, arith(CondAL, OpMov, 0, 0, r2, shiftIm(0x3f, 8)))
+	w(0xe580101c, Mem(CondAL, 0, 1, 0, PWOffset, R1, R0, AddrImm(28)))
+	w(0xe3a0283f, Arith(CondAL, OpMov, 0, 0, R2, ShiftIm(0x3f, 8)))
 
 	// wait2:
-	w(0xe2422001, arith(CondAL, OpSub, 0, r2, r2, shiftIm(1, 0)))
-	w(0xe3520000, arith(CondAL, OpCmp, 1, r2, 0, shiftIm(0, 0)))
-	w(0x1afffffc, branch(CondNE, 0, branchOffset(-4))) // wait2
-	w(0xeafffff4, branch(CondAL, 0, branchOffset(-12)))
+	w(0xe2422001, Arith(CondAL, OpSub, 0, R2, R2, ShiftIm(1, 0)))
+	w(0xe3520000, Arith(CondAL, OpCmp, 1, R2, 0, ShiftIm(0, 0)))
+	w(0x1afffffc, Branch(CondNE, 0, BranchOffset(-4))) // wait2
+	w(0xeafffff4, Branch(CondAL, 0, BranchOffset(-12)))
 
 	// end:
-	w(0xeafffffe, branch(CondAL, 0, branchOffset(-2))) // unreachable
+	w(0xeafffffe, Branch(CondAL, 0, BranchOffset(-2))) // unreachable
 
 	// [data]
 	w(0x20200000, 0x20200000)
