@@ -3,15 +3,15 @@ package lunasim
 /*
 cp15is the system control coprocessor. It controls all of the standard memory
 and system facilities.
- 
+
 */
 
 const ncp15Reg = 16
 
 type cp15 struct {
 	domains []int
-	regs []uint32
-	cpu *CPU
+	regs    []uint32
+	cpu     *CPU
 }
 
 const (
@@ -57,5 +57,3 @@ func newCp15(cpu *CPU) *cp15 {
 
 	return ret
 }
-
-
