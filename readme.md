@@ -40,11 +40,11 @@ in a more readable and understandable fashion, I am more than happy to
 do so. However, these projects have all been evolved into huge,
 undocumented and largely monolithic (not so clearly modularized)
 monsters, and I alone simply will not have the energy to refactor them
-without huge amount of help from the developer community, which often
-is driven by feature implementations and project deadline, and has no
-fundamental interests on code refactoring at this stage. Therefore, I
-decide to reinvent the wheel again, to build something small from
-scratch, on my own.
+without a huge amount of help from the developer community, which
+often is driven by feature implementations and project deadline, and
+has no fundamental interests on code refactoring at this stage.
+Therefore, I decide to reinvent the wheel again, to build something
+small from scratch, on my own.
 
 In particular, I decide to build something over bare metal, so that it
 does not depend on any software layer that I cannot possibly
