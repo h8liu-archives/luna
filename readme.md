@@ -41,7 +41,7 @@ do so. However, these projects have all been evolved into huge,
 undocumented and largely monolithic (not so clearly modularized)
 monsters, and I alone simply will not have the energy to refactor them
 without a huge amount of help from the developer community. The
-development of these process, on the other hand, is often driven by
+development of these projects, on the other hand, is often driven by
 bug fixes, feature requests and project deadlines, and the developers
 who understand the code well often has no fundamental interests on
 code refactoring at this stage.  Therefore, again, I decide to
