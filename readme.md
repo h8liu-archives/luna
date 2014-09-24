@@ -16,7 +16,7 @@ In particular, the project plans to implement:
 Although everyone can access the code of open source projects like GCC
 and Linux, fewer and fewer people understand how it works. Even for
 volunteers that contribute to the project for years, they probably
-only understand part of it. Worse, the understanding fades through
+only understand part of it. Worse is, the understanding fades through
 time and could be eventually lost when the programmer is gone. New
 programmers can sure treat the working code as a black box and use it
 via its interface, but without the ability to understand the internal
