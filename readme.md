@@ -58,7 +58,8 @@ In particular for this project, I decide to build something over bare
 metal, so that it does not depend on any software layer that I cannot
 possibly understand (i.e. operating systems like Linux). Sadly, to
 make it (sort of) more real, it still needs to be running on some
-existing hardware like Raspberry Pi.  I used to consider writing the
+existing hardware like Raspberry Pi, which has a pretty complex
+hardware interface layer.  I used to consider writing the
 project for a much simpler instruction set that I designed myself
 (called [E8](http://e8vm.net)), but I think a real working system
 might be eventually more attractive than a slow, simulated toy VM. The
