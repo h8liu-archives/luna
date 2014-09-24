@@ -14,7 +14,7 @@ In particular, the project plans to implement:
 ## Why?
 
 Although everyone can access the code that implements open source
-projects like GCC and Linux, fewer and fewer people understands how it
+projects like GCC and Linux, fewer and fewer people understand how it
 works. Even for volunteers that contribute to the project for years,
 they probably only understand part of it. Worse, the understanding
 fades through time and left when the programmer is gone. New
