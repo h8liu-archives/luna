@@ -1,6 +1,7 @@
 # Luna
 
-Luna is a coding project that aims for understandable coding.
+Luna is a coding project that aims for human-comprehensible yet
+working code.
 
 In particular, the project plans to implement:
 
