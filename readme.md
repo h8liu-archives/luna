@@ -89,6 +89,9 @@ implementation details.  After all, the purpose of this project is to
 produce human-comprehensible code, rather than yet-another
 compiler/operating system.
 
+There is no timeline on this project until I find a way to make a
+living with it.
+
 If you find this project intersting, you are always welcome to
 contribute. Besides programmers, I am also trying to find volunteers
 to review the code and provide feedback on if they can understand the
