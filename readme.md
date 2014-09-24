@@ -24,7 +24,7 @@ code logic thoroughly, making fundamental improvements on the code
 becomes largely practically impossible. Consequently, as time flies,
 wheels have to be reinvented.
 
-In face, as a computer science student, I reinvented several wheels
+In fact, as a computer science student, I reinvented several wheels
 myself. I am often blamed by my advisors and collegues for wasting
 time on building stuff that already exists. However, I often feel it
 is neccessary, because as a researcher, I am required to diagnose and
