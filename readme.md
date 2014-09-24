@@ -90,7 +90,8 @@ produce human-comprehensible code, rather than yet-another
 compiler/operating system.
 
 There is no timeline on this project until I find a way to make a
-living with it.
+living with it. It is just a self-funded small hobby research project
+for now.
 
 If you find this project intersting, you are always welcome to
 contribute. Besides programmers, I am also trying to find volunteers
