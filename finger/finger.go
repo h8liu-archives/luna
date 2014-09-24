@@ -1,3 +1,5 @@
+// finger is a strict subset of arm instructions that is similar to misp
+// and provides a simple yet usable assembly language for easier understanding
 package finger
 
 import (
@@ -74,7 +76,8 @@ func Bl(im int32) uint32  { return b(arm.CondPL, 0, im) }
 func J(im int32) uint32   { return b(arm.CondAL, 0, im) }
 
 func Jal(im int32) uint32 { return b(arm.CondAL, 1, im) }
-func Ret() uint32         { return Mov(arm.PC, arm.LR) }
+func Jr(r uint32) uint32  { return Mov(arm.PC, r) }
+func Ret() uint32         { return Jr(arm.LR) }
 
 // memory operations
 
