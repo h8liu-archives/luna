@@ -5,7 +5,7 @@ working code.
 
 In particular, the project plans to implement:
 
-- An simulator (written in golang) that simulates Raspberry Pi.
+- A simulator (written in golang) that simulates Raspberry Pi.
 - A compiler (written in golang) that (cross-)compiles an
   understandable language to ARM.
 - A small operating system that is written in this understandable
