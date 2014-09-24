@@ -13,16 +13,16 @@ In particular, the project plans to implement:
 
 ## Why?
 
-Although everyone can access the code that implements open source
-projects like GCC and Linux, fewer and fewer people understand how it
-works. Even for volunteers that contribute to the project for years,
-they probably only understand part of it. Worse, the understanding
-fades through time and could be eventually lost when the programmer is
-gone. New programmers can sure treat the working code as a black box
-and use it via its interface, but without the ability to understand
-the internal code logic thoroughly, making fundamental improvements on
-the code becomes largely practically impossible. Consequently, the
-wheels have to be reinvented.
+Although everyone can access the code of open source projects like GCC
+and Linux, fewer and fewer people understand how it works. Even for
+volunteers that contribute to the project for years, they probably
+only understand part of it. Worse, the understanding fades through
+time and could be eventually lost when the programmer is gone. New
+programmers can sure treat the working code as a black box and use it
+via its interface, but without the ability to understand the internal
+code logic thoroughly, making fundamental improvements on the code
+becomes largely practically impossible. Consequently, the wheels have
+to be reinvented.
 
 In face, as a computer science student, I reinvented several wheels
 myself. I am often blamed by my advisors and collegues for wasting
