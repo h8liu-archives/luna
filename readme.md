@@ -80,13 +80,14 @@ using this compiler.
 
 Eventually, my dream is that we have a working small toy operating
 system that can compile itself on Raspberry Pi, and every piece of
-code in this project will not only be working, but also be reviewed by
-a bunch of reviewers that has no understanding on the project design
-at first. I will use all kinds of methods (comments, documentation,
-tutorials, examples, live-demos, playground, whatever) to help the
-reviewers understand the implementation details.  After all, the
-purpose of this project is to produce human-comprehensible code,
-rather than yet-another compiler/operating system.
+code in this project will not only be working, but also be reviewed
+and comfirmed to be understandable by a bunch of reviewers that has no
+understanding on the project design at first. I will use all kinds of
+methods (comments, documentation, tutorials, examples, live-demos,
+playground, whatever) to help the reviewers understand the
+implementation details.  After all, the purpose of this project is to
+produce human-comprehensible code, rather than yet-another
+compiler/operating system.
 
 If you find this project intersting, you are always welcome to
 contribute. Besides programmers, I am also trying to find volunteers
