@@ -45,16 +45,26 @@ development of these process, on the other hand, is often driven by
 bug fixes, feature requests and project deadlines, and the developers
 who understand the code well often has no fundamental interests on
 code refactoring at this stage.  Therefore, again, I decide to
-reinvent the wheel and build something small from scratch.
+reinvent the wheel and build something small from scratch. 
 
-In particular, I decide to build something over bare metal, so that it
-does not depend on any software layer that I cannot possibly
-understand (i.e. Linux). Sadly, to make it (sort of) more real, it
-still needs to be running on some existing hardware like Raspberry Pi.
-I used to consider writing for a much simpler instruction set that I
-invented myself (called [E8](http://e8vm.net) ), but I think a real
-working system might be eventually more attractive than a slow,
-simulated toy VM.
+Some might say I build it for fun. Though I often enjoy coding, I
+would really prefer not doing it this time if I can read the code like
+reading a well-written book. I tried reading the source code of a lot
+of open source projects, but I feel that I just can't understand them
+thoroughly; often I even don't know how it is structrued at a high
+level and where to start reading.
+
+In particular for this project, I decide to build something over bare
+metal, so that it does not depend on any software layer that I cannot
+possibly understand (i.e. operating systems like Linux). Sadly, to
+make it (sort of) more real, it still needs to be running on some
+existing hardware like Raspberry Pi.  I used to consider writing the
+project for a much simpler instruction set that I designed myself
+(called [E8](http://e8vm.net)), but I think a real working system
+might be eventually more attractive than a slow, simulated toy VM. The
+good part is, I will always have reference working systems that I can
+look into and handy tools to play around with when I am stuck on a
+problem.
 
 ## Roadmap
 
@@ -62,21 +72,25 @@ I just started the project. Here is my current plan.
 
 I will first specify a strict subset of ARM which provides MIPS-like
 functionality (much less powerful but simpler to undertand), and then
-build a simple, stupid, straight-forward, and slow compiler targeting
-this intruction subset. When I have the compiler working, I will start
-writing a simple OS with this compiler.
+build a simple, stupid, slow and straight-forward compiler for a
+customized language targeting this intruction subset. When I have the
+compiler working, I will start writing a simple OS with this language
+using this compiler.
 
-Eventually, every piece of code in this project will not only be
-working, but also be reviewed by a bunch of reviewers that has no
-understanding on the code design. I will use all kinds of methods
-(comments, documentation, tutorials, examples, live-demos, playground,
-whatever) to help the reviewers to understand the code. After all,
-the purpose of this project is to produce human-comprehensible code,
-but not yet-another compiler/operating system.
+Eventually, my dream is that we have a working small toy operating
+system that can compile itself on Raspberry Pi, and every piece of
+code in this project will not only be working, but also be reviewed by
+a bunch of reviewers that has no understanding on the project design
+at first. I will use all kinds of methods (comments, documentation,
+tutorials, examples, live-demos, playground, whatever) to help the
+reviewers understand the implementation details.  After all, the
+purpose of this project is to produce human-comprehensible code,
+rather than yet-another compiler/operating system.
 
-You are always welcome to contribute. Besides programmers, I am also
-trying to find volunteers to review the code and provide feedback on
-if they can understand the code or not, and what might help to make
-them understand. 
+If you find this project intersting, you are always welcome to
+contribute. Besides programmers, I am also trying to find volunteers
+to review the code and provide feedback on if they can understand the
+code or not, and what might help to make them understand. Please feel
+free to send me [email](mailto:liulonnie@gmail.com).
 
 Thanks.
