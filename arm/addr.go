@@ -34,7 +34,7 @@ func AddrReg(mode, im, rm uint32) uint32 {
 	return ret
 }
 
-// rd is the address for store/load
+// rd is the register for the content of store/load
 // rn is the base register for calculating adderss
 // addr has the bitI and the addr-operand
 // bitL tells if it is a load; 1 for load, 0 for store.

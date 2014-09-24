@@ -61,7 +61,6 @@ const (
 // arith makes an arithmetic instruction
 // cond specifies when the instruction is executed
 // op is a 4-bit field that tells the operation
-// bitI is set when the sh field will be interpreted as an immediate
 // bitS is set when the flags will be affected
 // rn is the first input register
 // rd is the output result register

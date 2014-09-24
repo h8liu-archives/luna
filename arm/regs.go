@@ -18,5 +18,7 @@ const (
 	R14 = 14
 	R15 = 15
 
-	PC = R15
+	SP = R13 // stack pointer
+	LR = R14 // link register
+	PC = R15 // program counter
 )
