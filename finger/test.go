@@ -5,7 +5,7 @@ import (
 	"encoding/binary"
 )
 
-func TestBin() []byte {
+func TestBin() (code, data []byte) {
 	buf := new(bytes.Buffer)
 	b4 := make([]byte, 4)
 
@@ -46,5 +46,8 @@ func TestBin() []byte {
 		buf.Write(b4)
 	}
 
-	return buf.Bytes()
+	dataBuf := new(bytes.Buffer)
+	binary.LittleEndian.PutUint32(b4, 0x20200000)
+
+	return buf.Bytes(), dataBuf.Bytes()
 }

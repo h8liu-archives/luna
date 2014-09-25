@@ -1,28 +1,32 @@
 package main
 
 import (
-	"github.com/h8liu/luna/finger"
+	"io/ioutil"
 
-	// "encoding/binary"
-	"fmt"
+	"github.com/h8liu/luna/finger"
 )
 
 func main() {
-	buf := finger.TestBin()
+	const PageSize = 4096
 
-	n := len(buf)
+	code, data := finger.TestBin()
+	n := len(code)
 	if n%4 != 0 {
-		panic("buffer not aligned")
+		panic("code buffer not aligned")
+	}
+	if n > PageSize {
+		panic("code buffer too large")
+	}
+	if len(data) > PageSize {
+		panic("data buffer too large")
 	}
 
-	fmt.Printf("hello\n")
-	for i := 0; i < n; i++ {
-		fmt.Printf("%02x ", buf[i])
+	img := make([]byte, PageSize*2)
+	copy(img[:PageSize], code)
+	copy(img[PageSize:], data)
+
+	e := ioutil.WriteFile("luna.img", img, 0666)
+	if e != nil {
+		panic(e)
 	}
-	/*
-		for i := 0; i < n; i += 4 {
-			inst := binary.LittleEndian.Uint32(buf[i : i+4])
-			fmt.Printf("%08x\n", inst)
-		}
-	*/
 }
