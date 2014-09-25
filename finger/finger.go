@@ -31,6 +31,8 @@ func Mul(ret, r1, r2 uint32) uint32 {
 	return arm.Mul(arm.CondAL, 0, ret, r1, r2)
 }
 
+func Noop() uint32 { return 0 }
+
 // ARMv5 does not have division
 
 // register and 8-bit
@@ -77,7 +79,9 @@ func J(im int32) uint32   { return b(arm.CondAL, 0, im) }
 
 func Jal(im int32) uint32 { return b(arm.CondAL, 1, im) }
 func Jr(r uint32) uint32  { return Mov(arm.PC, r) }
-func Ret() uint32         { return Jr(arm.LR) }
+func Ret() uint32         { return _ret }
+
+var _ret = Jr(arm.LR)
 
 // memory operations
 
