@@ -48,6 +48,7 @@ func TestBin() (code, data []byte) {
 
 	dataBuf := new(bytes.Buffer)
 	binary.LittleEndian.PutUint32(b4, 0x20200000)
+	dataBuf.Write(b4)
 
 	return buf.Bytes(), dataBuf.Bytes()
 }
