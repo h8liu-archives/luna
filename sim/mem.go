@@ -1,8 +1,9 @@
 package sim
 
-// physical memory
+// Physical memory
 type PhyMemory struct {
-	pages []*PhyPage
+	npage uint32
+	pages map[uint32]*PhyPage
 }
 
 var _ MemArea = new(PhyPage)
@@ -13,7 +14,8 @@ func NewPhyMemory(size uint32) *PhyMemory {
 		panic("memory size not aligned to page size")
 	}
 
-	m.pages = make([]*PhyPage, size/pageSize)
+	m.npage = size / pageSize
+	m.pages = make(map[uint32]*PhyPage)
 
 	return m
 }
@@ -23,6 +25,9 @@ func pageAddr(paddr uint32) (uint32, uint32) {
 }
 
 func (m *PhyMemory) page(index uint32) *PhyPage {
+	if index >= m.npage {
+		panic("physical memory address out of range")
+	}
 	p := m.pages[index]
 	if p == nil {
 		p = NewPhyPage()
