@@ -3,6 +3,7 @@ package finger
 import (
 	"bytes"
 	"encoding/binary"
+	"fmt"
 )
 
 func TestBin() (code, data []byte) {
@@ -11,10 +12,11 @@ func TestBin() (code, data []byte) {
 
 	for _, b := range []uint32{
 		// start:
-		Movi(SP, 1),      // sp = 1
-		Sllv(SP, SP, 12), // sp = sp << 12 // data page offset
+		Movi(R5, 9),      // r5 = 9
+		Sllv(R5, R5, 12), // r5 = r5 << 12 // data page offset
+		Ld(R0, R5, 0),    // r0 = [r5]
 
-		Ld(R0, SP, 0),    // r0 = [sp]
+		// Ld(R0, PC, 68),   // r0 = [pc + 68]
 		Movi(R1, 1),      // r1 = 1
 		Sllv(R1, R1, 18), // r1 = r1 << 18
 		St(R1, R0, 4),    // [r0 + 4] = r1
@@ -41,9 +43,12 @@ func TestBin() (code, data []byte) {
 		Bne(-4),         // goto wait2
 
 		J(-12), // goto loop
+
+		0x20200000, // add the data
 	} {
 		binary.LittleEndian.PutUint32(b4, b)
 		buf.Write(b4)
+		fmt.Printf("d(0x%08x)\n", b)
 	}
 
 	dataBuf := new(bytes.Buffer)
