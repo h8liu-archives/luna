@@ -40,6 +40,7 @@ func Noop() uint32 { return 0 }
 func Andi(ret, r1, im uint32) uint32 { return r3i(arm.OpAnd, ret, r1, im) }
 func Xori(ret, r1, im uint32) uint32 { return r3i(arm.OpXor, ret, r1, im) }
 func Subi(ret, r1, im uint32) uint32 { return r3i(arm.OpSub, ret, r1, im) }
+func Cmpi(r1, im uint32) uint32      { return r3i(arm.OpCmp, 0, r1, im) }
 func Addi(ret, r1, im uint32) uint32 { return r3i(arm.OpAdd, ret, r1, im) }
 func Ori(ret, r1, im uint32) uint32  { return r3i(arm.OpOrr, ret, r1, im) }
 func Movi(ret, im uint32) uint32     { return r3i(arm.OpMov, ret, 0, im) }
@@ -73,8 +74,8 @@ func b(cond, bitL uint32, im int32) uint32 {
 
 func Beq(im int32) uint32 { return b(arm.CondEQ, 0, im) }
 func Bne(im int32) uint32 { return b(arm.CondNE, 0, im) }
-func Bge(im int32) uint32 { return b(arm.CondMI, 0, im) }
-func Bl(im int32) uint32  { return b(arm.CondPL, 0, im) }
+func Bge(im int32) uint32 { return b(arm.CondGE, 0, im) }
+func Bl(im int32) uint32  { return b(arm.CondLT, 0, im) }
 func J(im int32) uint32   { return b(arm.CondAL, 0, im) }
 
 func Jal(im int32) uint32 { return b(arm.CondAL, 1, im) }
