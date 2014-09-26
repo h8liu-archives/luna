@@ -30,7 +30,7 @@ time on building stuff that already exists. However, I often feel it
 is neccessary, because as a researcher, I am required to diagnose and
 explain how and why something works or not, and hence have to
 understand how it works inside, and reinventing the wheel is often the
-fastest and, more importantly, the safest among all ways, and maybe the only way, to achieve this
+fastest among all ways, and maybe the only way, to achieve this
 level of understanding. For the blames I received, I blame the ones
 that just wrote the code that works but never thoroughly explained how
 the code works.
