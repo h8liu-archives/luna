@@ -1,4 +1,8 @@
-package arm
+package arith
+
+import (
+	. "github.com/h8liu/luna/arm/cond"
+)
 
 const (
 	ShSLLImm = 0
@@ -65,7 +69,7 @@ const (
 // rn is the first input register
 // rd is the output result register
 func Arith(cond, op, bitS, rn, rd, sh uint32) uint32 {
-	ret := cond << condShift
+	ret := cond << CondShift
 
 	switch op {
 	case OpTst, OpTeq, OpCmp, OpCmn:
@@ -86,7 +90,7 @@ func Arith(cond, op, bitS, rn, rd, sh uint32) uint32 {
 
 // mutiply
 func Mul(cond, bitS, rd, rs, rm uint32) uint32 {
-	ret := cond << condShift
+	ret := cond << CondShift
 	ret |= 0x9 << 4
 	ret |= (bitS & 0x1) << 20
 	ret |= (rd & 0xf) << 16

@@ -1,5 +1,9 @@
 package sim
 
+import (
+	. "github.com/h8liu/luna/sim/phymem"
+)
+
 // Currnet program status register
 type cpsr struct {
 	n, z, c, v, q, e bool

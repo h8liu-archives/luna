@@ -1,21 +1,15 @@
-package sim
+// Physical page
+package phypage
 
 import (
 	"encoding/binary"
-)
 
-type MemArea interface {
-	ReadU8(offset uint32) uint32
-	WriteU8(offset, v uint32)
-	ReadU32(offset uint32) uint32
-	WriteU32(offset, v uint32)
-}
+	. "github.com/h8liu/luna/sim/consts"
+)
 
 type PhyPage struct {
 	dat []byte
 }
-
-var _ MemArea = new(PhyPage)
 
 func alignU32(offset uint32) uint32 {
 	return offset & ^uint32(0x3)
@@ -23,22 +17,23 @@ func alignU32(offset uint32) uint32 {
 
 func NewPhyPage() *PhyPage {
 	ret := new(PhyPage)
-	ret.dat = make([]byte, pageSize)
+	ret.dat = make([]byte, PageSize)
 	return ret
 }
 
+// Raspberry Pi uses little endian
 var endian = binary.LittleEndian
 
 func (p *PhyPage) ReadU8(offset uint32) uint32 {
-	return uint32(p.dat[offset&pageMask])
+	return uint32(p.dat[offset&PageMask])
 }
 
 func (p *PhyPage) WriteU8(offset, v uint32) {
-	p.dat[offset&pageMask] = uint8(v)
+	p.dat[offset&PageMask] = uint8(v)
 }
 
 func (p *PhyPage) sliceU32(offset uint32) []byte {
-	offset &= pageMask
+	offset &= PageMask
 	offset = alignU32(offset)
 	return p.dat[offset : offset+4]
 }

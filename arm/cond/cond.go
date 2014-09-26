@@ -1,4 +1,4 @@
-package arm
+package cond
 
 const (
 	CondEQ = 0   // z set
@@ -20,14 +20,13 @@ const (
 )
 
 const (
-	condShift = 28
-	bitMask24 = uint32((0x1 << 24) - 1)
+	CondShift = 28
 )
 
-func setCond(i uint32, cond uint32) uint32 {
+func SetCond(i uint32, cond uint32) uint32 {
 	return (i & ^uint32(0xf0000000)) | ((cond & 0xf) << 28)
 }
 
-func Cond(i uint32) uint8 {
+func GetCond(i uint32) uint8 {
 	return uint8(i >> 28)
 }

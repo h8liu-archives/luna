@@ -1,4 +1,8 @@
-package arm
+package mem
+
+import (
+	. "github.com/h8liu/luna/arm/cond"
+)
 
 const (
 	pwMask   = 0x9
@@ -42,7 +46,7 @@ func AddrReg(mode, im, rm uint32) uint32 {
 // bitB tells if it is a byte load/store operation; 1 for byte, 0 for word
 // bitPW tells the accessing mode
 func Mem(cond, bitL, bitU, bitB, bitPW, rd, rn, addr uint32) uint32 {
-	ret := cond << condShift
+	ret := cond << CondShift
 	ret |= 0x1 << 26 // memory op
 	ret |= (bitL & 0x1) << 20
 	ret |= (bitU & 0x1) << 23

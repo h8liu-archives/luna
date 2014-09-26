@@ -1,4 +1,9 @@
-package sim
+package phymem
+
+import (
+	. "github.com/h8liu/luna/sim/consts"
+	. "github.com/h8liu/luna/sim/phypage"
+)
 
 // Physical memory
 type PhyMemory struct {
@@ -6,22 +11,20 @@ type PhyMemory struct {
 	pages map[uint32]*PhyPage
 }
 
-var _ MemArea = new(PhyPage)
-
 func NewPhyMemory(size uint32) *PhyMemory {
 	m := new(PhyMemory)
-	if size%pageSize != 0 {
+	if size%PageSize != 0 {
 		panic("memory size not aligned to page size")
 	}
 
-	m.npage = size / pageSize
+	m.npage = size / PageSize
 	m.pages = make(map[uint32]*PhyPage)
 
 	return m
 }
 
 func pageAddr(paddr uint32) (uint32, uint32) {
-	return paddr >> pageNbit, paddr & pageMask
+	return paddr >> PageNbit, paddr & PageMask
 }
 
 func (m *PhyMemory) page(index uint32) *PhyPage {

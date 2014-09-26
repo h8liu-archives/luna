@@ -1,9 +1,11 @@
-package finger
+package eg
 
 import (
 	"bytes"
 	"encoding/binary"
 	"fmt"
+
+	. "github.com/h8liu/luna/finger"
 )
 
 func TestBin() (code, data []byte) {

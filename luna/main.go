@@ -3,13 +3,13 @@ package main
 import (
 	"io/ioutil"
 
-	"github.com/h8liu/luna/finger"
+	eg "github.com/h8liu/luna/finger/eg"
 )
 
 func main() {
 	const PageSize = 4096
 
-	code, data := finger.TestBin()
+	code, data := eg.TestBin()
 	n := len(code)
 	if n%4 != 0 {
 		panic("code buffer not aligned")

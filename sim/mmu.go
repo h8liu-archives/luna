@@ -1,6 +1,8 @@
 package sim
 
 import (
+	. "github.com/h8liu/luna/sim/consts"
+
 	"errors"
 	"fmt"
 )
@@ -29,14 +31,9 @@ type mmu struct {
 }
 
 const (
-	addrNbit  = 32
-	pageNbit  = 12
-	pageSize  = 1 << pageNbit
-	pageMask  = pageSize - 1
-	indexNbit = addrNbit - pageNbit
-	lvl2Nbit  = 8
-	lvl2Mask  = (1 << lvl2Nbit) - 1
-	lvl1Nbit  = indexNbit - lvl2Nbit
+	lvl2Nbit = 8
+	lvl2Mask = (1 << lvl2Nbit) - 1
+	lvl1Nbit = IndexNbit - lvl2Nbit
 )
 
 func newMMU() *mmu {
@@ -64,12 +61,12 @@ func (u *mmu) useBase0(vaddr uint32) bool {
 	if u.width == 0 {
 		return true
 	}
-	return (vaddr >> (addrNbit - u.width)) == 0
+	return (vaddr >> (AddrNbit - u.width)) == 0
 }
 
 // lvl1Addr returns the address of the first stage page table
 func (u *mmu) lvl1EntryAddr(vaddr uint32) uint32 {
-	ret := (vaddr >> (addrNbit - lvl1Nbit)) * 4
+	ret := (vaddr >> (AddrNbit - lvl1Nbit)) * 4
 	if u.useBase0(vaddr) {
 		ret += u.baseAddr0
 	} else {
@@ -80,7 +77,7 @@ func (u *mmu) lvl1EntryAddr(vaddr uint32) uint32 {
 
 // lvl2Addr returns the address of the second stage page table
 func (u *mmu) lvl2EntryAddr(vaddr, table uint32) uint32 {
-	index := (vaddr >> pageNbit) & lvl2Mask
+	index := (vaddr >> PageNbit) & lvl2Mask
 	return (table & 0xfffffc00) + index*4
 }
 
@@ -184,7 +181,7 @@ func (u *mmu) needPermCheck(entry uint32, isSuper bool) (bool, error) {
 }
 
 func trans(e uint32, vaddr uint32) uint32 {
-	return (e & ^uint32(pageMask)) | (vaddr & pageMask)
+	return (e & ^uint32(PageMask)) | (vaddr & PageMask)
 }
 
 func (u *mmu) walk(vaddr uint32, isWrite bool) (uint32, error) {

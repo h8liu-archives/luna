@@ -1,10 +1,16 @@
-package arm
+package eg
 
 import (
 	"bytes"
 	"encoding/binary"
 	"fmt"
 	"testing"
+
+	. "github.com/h8liu/luna/arm/arith"
+	. "github.com/h8liu/luna/arm/branch"
+	. "github.com/h8liu/luna/arm/cond"
+	. "github.com/h8liu/luna/arm/mem"
+	. "github.com/h8liu/luna/arm/regname"
 )
 
 func makeTestBinary(t *testing.T) []byte {

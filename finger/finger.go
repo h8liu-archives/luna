@@ -3,32 +3,59 @@
 package finger
 
 import (
-	"github.com/h8liu/luna/arm"
+	ar "github.com/h8liu/luna/arm/arith"
+	. "github.com/h8liu/luna/arm/branch"
+	. "github.com/h8liu/luna/arm/cond"
+	. "github.com/h8liu/luna/arm/mem"
+	rn "github.com/h8liu/luna/arm/regname"
+)
+
+const (
+	R0  = 0
+	R1  = 1
+	R2  = 2
+	R3  = 3
+	R4  = 4
+	R5  = 5
+	R6  = 6
+	R7  = 7
+	R8  = 8
+	R9  = 9
+	R10 = 10
+	R11 = 11
+	R12 = 12
+	R13 = 13
+	R14 = 14
+	R15 = 15
+
+	SP = rn.SP // stack pointer
+	LR = rn.LR // link register
+	PC = rn.PC // program counter
 )
 
 // register only operations
 
 func r3(op, ret, r1, r2 uint32) uint32 {
-	return arm.Arith(arm.CondAL, op, 0, r1, ret,
-		arm.ShiftReg(arm.ShSLLImm, r2, 0, 0),
+	return ar.Arith(CondAL, op, 0, r1, ret,
+		ar.ShiftReg(ar.ShSLLImm, r2, 0, 0),
 	)
 }
 
 func r3i(op, ret, r1, im uint32) uint32 {
-	return arm.Arith(arm.CondAL, op, 0, r1, ret, arm.ShiftIm(im, 0))
+	return ar.Arith(CondAL, op, 0, r1, ret, ar.ShiftIm(im, 0))
 }
 
-func And(ret, r1, r2 uint32) uint32 { return r3(arm.OpAnd, ret, r1, r2) }
-func Xor(ret, r1, r2 uint32) uint32 { return r3(arm.OpXor, ret, r1, r2) }
-func Sub(ret, r1, r2 uint32) uint32 { return r3(arm.OpSub, ret, r1, r2) }
-func Cmp(r1, r2 uint32) uint32      { return r3(arm.OpCmp, 0, r1, r2) }
-func Add(ret, r1, r2 uint32) uint32 { return r3(arm.OpAdd, ret, r1, r2) }
-func Or(ret, r1, r2 uint32) uint32  { return r3(arm.OpOrr, ret, r1, r2) }
-func Mov(ret, r1 uint32) uint32     { return r3(arm.OpMov, ret, 0, r1) }
-func Not(ret, r1 uint32) uint32     { return r3i(arm.OpBic, ret, r1, 0) }
+func And(ret, r1, r2 uint32) uint32 { return r3(ar.OpAnd, ret, r1, r2) }
+func Xor(ret, r1, r2 uint32) uint32 { return r3(ar.OpXor, ret, r1, r2) }
+func Sub(ret, r1, r2 uint32) uint32 { return r3(ar.OpSub, ret, r1, r2) }
+func Cmp(r1, r2 uint32) uint32      { return r3(ar.OpCmp, 0, r1, r2) }
+func Add(ret, r1, r2 uint32) uint32 { return r3(ar.OpAdd, ret, r1, r2) }
+func Or(ret, r1, r2 uint32) uint32  { return r3(ar.OpOrr, ret, r1, r2) }
+func Mov(ret, r1 uint32) uint32     { return r3(ar.OpMov, ret, 0, r1) }
+func Not(ret, r1 uint32) uint32     { return r3i(ar.OpBic, ret, r1, 0) }
 
 func Mul(ret, r1, r2 uint32) uint32 {
-	return arm.Mul(arm.CondAL, 0, ret, r1, r2)
+	return ar.Mul(CondAL, 0, ret, r1, r2)
 }
 
 func Noop() uint32 { return 0 }
@@ -37,52 +64,52 @@ func Noop() uint32 { return 0 }
 
 // register and 8-bit
 
-func Andi(ret, r1, im uint32) uint32 { return r3i(arm.OpAnd, ret, r1, im) }
-func Xori(ret, r1, im uint32) uint32 { return r3i(arm.OpXor, ret, r1, im) }
-func Subi(ret, r1, im uint32) uint32 { return r3i(arm.OpSub, ret, r1, im) }
-func Cmpi(r1, im uint32) uint32      { return r3i(arm.OpCmp, 0, r1, im) }
-func Addi(ret, r1, im uint32) uint32 { return r3i(arm.OpAdd, ret, r1, im) }
-func Ori(ret, r1, im uint32) uint32  { return r3i(arm.OpOrr, ret, r1, im) }
-func Movi(ret, im uint32) uint32     { return r3i(arm.OpMov, ret, 0, im) }
+func Andi(ret, r1, im uint32) uint32 { return r3i(ar.OpAnd, ret, r1, im) }
+func Xori(ret, r1, im uint32) uint32 { return r3i(ar.OpXor, ret, r1, im) }
+func Subi(ret, r1, im uint32) uint32 { return r3i(ar.OpSub, ret, r1, im) }
+func Cmpi(r1, im uint32) uint32      { return r3i(ar.OpCmp, 0, r1, im) }
+func Addi(ret, r1, im uint32) uint32 { return r3i(ar.OpAdd, ret, r1, im) }
+func Ori(ret, r1, im uint32) uint32  { return r3i(ar.OpOrr, ret, r1, im) }
+func Movi(ret, im uint32) uint32     { return r3i(ar.OpMov, ret, 0, im) }
 
 // register shifting with 5-bit im
 
 func si(op, ret, r1, sh uint32) uint32 {
-	return arm.Arith(arm.CondAL, arm.OpMov, 0, 0, ret,
-		arm.ShiftReg(op, r1, sh, 0),
+	return ar.Arith(CondAL, ar.OpMov, 0, 0, ret,
+		ar.ShiftReg(op, r1, sh, 0),
 	)
 }
 
 func s(op, ret, r1, r2 uint32) uint32 {
-	return arm.Arith(arm.CondAL, arm.OpMov, 0, 0, ret,
-		arm.ShiftReg(op, r1, 0, r2),
+	return ar.Arith(CondAL, ar.OpMov, 0, 0, ret,
+		ar.ShiftReg(op, r1, 0, r2),
 	)
 }
 
-func Sllv(ret, r1, sh uint32) uint32 { return si(arm.ShSLLImm, ret, r1, sh) }
-func Srlv(ret, r1, sh uint32) uint32 { return si(arm.ShSRLImm, ret, r1, sh) }
-func Srav(ret, r1, sh uint32) uint32 { return si(arm.ShSRAImm, ret, r1, sh) }
-func Sll(ret, r1, r2 uint32) uint32  { return s(arm.ShSLLReg, ret, r1, r2) }
-func Srl(ret, r1, r2 uint32) uint32  { return s(arm.ShSRLReg, ret, r1, r2) }
-func Sra(ret, r1, r2 uint32) uint32  { return s(arm.ShSRAReg, ret, r1, r2) }
+func Sllv(ret, r1, sh uint32) uint32 { return si(ar.ShSLLImm, ret, r1, sh) }
+func Srlv(ret, r1, sh uint32) uint32 { return si(ar.ShSRLImm, ret, r1, sh) }
+func Srav(ret, r1, sh uint32) uint32 { return si(ar.ShSRAImm, ret, r1, sh) }
+func Sll(ret, r1, r2 uint32) uint32  { return s(ar.ShSLLReg, ret, r1, r2) }
+func Srl(ret, r1, r2 uint32) uint32  { return s(ar.ShSRLReg, ret, r1, r2) }
+func Sra(ret, r1, r2 uint32) uint32  { return s(ar.ShSRAReg, ret, r1, r2) }
 
 // branch operations
 
 func b(cond, bitL uint32, im int32) uint32 {
-	return arm.Branch(cond, bitL, arm.BranchOffset(im))
+	return Branch(cond, bitL, BranchOffset(im))
 }
 
-func Beq(im int32) uint32 { return b(arm.CondEQ, 0, im) }
-func Bne(im int32) uint32 { return b(arm.CondNE, 0, im) }
-func Bge(im int32) uint32 { return b(arm.CondGE, 0, im) }
-func Bl(im int32) uint32  { return b(arm.CondLT, 0, im) }
-func J(im int32) uint32   { return b(arm.CondAL, 0, im) }
+func Beq(im int32) uint32 { return b(CondEQ, 0, im) }
+func Bne(im int32) uint32 { return b(CondNE, 0, im) }
+func Bge(im int32) uint32 { return b(CondGE, 0, im) }
+func Bl(im int32) uint32  { return b(CondLT, 0, im) }
+func J(im int32) uint32   { return b(CondAL, 0, im) }
 
-func Jal(im int32) uint32 { return b(arm.CondAL, 1, im) }
-func Jr(r uint32) uint32  { return Mov(arm.PC, r) }
+func Jal(im int32) uint32 { return b(CondAL, 1, im) }
+func Jr(r uint32) uint32  { return Mov(PC, r) }
 func Ret() uint32         { return _ret }
 
-var _ret = Jr(arm.LR)
+var _ret = Jr(LR)
 
 // memory operations
 
@@ -96,8 +123,8 @@ func offAbs(off int32) (bitU, uoff uint32) {
 
 func mem(ret, base uint32, off int32, bitL, bitB uint32) uint32 {
 	bitU, uoff := offAbs(off)
-	return arm.Mem(arm.CondAL, bitL, bitU, bitB, arm.PWOffset,
-		ret, base, arm.AddrImm(uoff),
+	return Mem(CondAL, bitL, bitU, bitB, PWOffset,
+		ret, base, AddrImm(uoff),
 	)
 }
 

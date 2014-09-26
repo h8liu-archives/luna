@@ -1,8 +1,4 @@
-package finger
-
-import (
-	"github.com/h8liu/luna/arm"
-)
+package regname
 
 const (
 	R0  = 0
@@ -22,7 +18,7 @@ const (
 	R14 = 14
 	R15 = 15
 
-	SP = arm.SP // stack pointer
-	LR = arm.LR // link register
-	PC = arm.PC // program counter
+	SP = R13 // stack pointer
+	LR = R14 // link register
+	PC = R15 // program counter
 )
