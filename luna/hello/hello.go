@@ -53,8 +53,7 @@ func Img() (code, data []byte) {
 		Movi(R0, 40),
 		St(R0, R3, 0x28), // FBRD
 
-		Movi(R0, 0x7),
-		Sllv(R0, R0, 4),
+		Movi(R0, 0x70),
 		St(R0, R3, 0x2C), // LCRH
 
 		Movi(R0, 0x7),
