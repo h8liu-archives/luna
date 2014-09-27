@@ -8,8 +8,8 @@ import (
 	. "github.com/h8liu/luna/finger"
 )
 
-func TestBin() (code, data []byte) {
-	buf := new(bytes.Buffer)
+func Img() (code, data []byte) {
+	cbuf := new(bytes.Buffer)
 	b4 := make([]byte, 4)
 
 	for _, b := range []uint32{
@@ -24,7 +24,6 @@ func TestBin() (code, data []byte) {
 		St(R1, R0, 4),    // [r0 + 4] = r1
 		Movi(R1, 1),      // r1 = 1
 		Sllv(R1, R1, 16), // r1 = r1 << 16
-		Movi(R3, 0),      // r3 = 0
 		Movi(R4, 0x3f),   // r4 = 0x3f
 
 		// loop:
@@ -33,7 +32,7 @@ func TestBin() (code, data []byte) {
 
 		// wait1:
 		Subi(R2, R2, 1), // r2 = r2 - 1
-		Cmp(R2, R3),     // if r2 != r3:
+		Cmpi(R2, 0),     // if r2 != r3:
 		Bne(-4),         // goto wait1
 
 		St(R1, R0, 28),   // [r0 + 28] = r1
@@ -41,7 +40,7 @@ func TestBin() (code, data []byte) {
 
 		// wait2:
 		Subi(R2, R2, 1), // r2 = r2 - 1
-		Cmp(R2, R3),     // if r2 != r3:
+		Cmpi(R2, 0),     // if r2 != r3:
 		Bne(-4),         // goto wait2
 
 		J(-12), // goto loop
@@ -49,13 +48,13 @@ func TestBin() (code, data []byte) {
 		0x20200000, // add the data
 	} {
 		binary.LittleEndian.PutUint32(b4, b)
-		buf.Write(b4)
+		cbuf.Write(b4)
 		fmt.Printf("d(0x%08x)\n", b)
 	}
 
-	dataBuf := new(bytes.Buffer)
+	dbuf := new(bytes.Buffer)
 	binary.LittleEndian.PutUint32(b4, 0x20200000)
-	dataBuf.Write(b4)
+	dbuf.Write(b4)
 
-	return buf.Bytes(), dataBuf.Bytes()
+	return cbuf.Bytes(), dbuf.Bytes()
 }
