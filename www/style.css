@@ -44,8 +44,13 @@ div.anno {
 	padding-right: .1in;
 	margin-right: .15in;
 	margin-top: .05in;
-	margin-bottom: .05in;
+	margin-bottom: .16in;
 	border-right: 1px solid #ccc;
+}
+
+div.anno span.line {
+    color: #900;
+    padding-right: .05in;
 }
 
 div#main {
