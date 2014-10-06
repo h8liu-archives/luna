@@ -1,0 +1,96 @@
+
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400italic,400);
+
+body {
+    font-family: "Open Sans", "sans-serif";
+    font-size: .13in;
+    padding: 0;
+    margin-left: .2in;
+    margin-right: .2in;
+    margin-top: .1in;
+}
+
+div#body {
+	width: 1150px;
+	margin: auto;
+}
+
+div#title {
+	padding-left: .1in;
+	padding-right: .1in;
+}
+
+div#title h1 {
+	margin: 0;
+	padding: 0;
+}
+
+div#title h1 code {
+	margin: 0;
+	font-size: .17in;
+}
+
+div#title span.package {
+	color: #666;
+}
+
+div#annotate {
+	float: left;
+	width: 250px;
+}
+
+div.anno {
+	padding-left: .1in;
+	padding-right: .1in;
+	margin-right: .15in;
+	margin-top: .05in;
+	margin-bottom: .05in;
+	border-right: 1px solid #ccc;
+}
+
+div#main {
+	margin-left: 250px;
+	width: 600px;
+}
+
+div#ref {
+	width: 250px;
+	float: right;
+}
+
+pre#code {
+	font-family: "Consolas", "monospace";
+	font-size: 13px;
+	color: #000;
+	/* background: #eee; */
+	padding: .02in;
+	margin: 0;
+	padding-left: .1in;
+	padding-right: .1in;
+}
+
+code {
+	font-family: "Consolas", "monospace";
+	font-size: 13px;
+}
+
+div#ref {
+	color: #777;
+}
+
+div#ref code.package {
+	color: #555;
+}
+
+div#ref ul.ref {
+	list-style: none;
+	margin-left: .1in;
+	margin-right: .1in;
+	margin-top: .05in;
+	margin-bottom: .2in;
+	padding: 0;
+	padding-left: .15in;
+
+	border-left: 1px solid #ccc;
+
+}
