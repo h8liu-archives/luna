@@ -35,8 +35,8 @@ div#title span.package {
 }
 
 div#annotate {
-	float: left;
-	width: 250px;
+	float: right;
+	width: 300px;
 }
 
 div.anno {
@@ -45,7 +45,7 @@ div.anno {
 	margin-right: .15in;
 	margin-top: .05in;
 	margin-bottom: .16in;
-	border-right: 1px solid #ccc;
+	border-left: 1px solid #ccc;
 }
 
 div.anno span.line {
@@ -54,21 +54,27 @@ div.anno span.line {
 }
 
 div#main {
-	margin-left: 250px;
+	margin-left: 200px;
 	width: 600px;
 }
 
 div#ref {
-	width: 250px;
-	float: right;
+	width: 200px;
+	float: left;
 }
 
-pre#code {
+textarea#code {
+    width: 598px;
+    border: 0;
+    outline: none;
+    min-height: 600px;
 	font-family: "Consolas", "monospace";
 	font-size: 13px;
 	color: #000;
-	/* background: #eee; */
-	padding: .02in;
+	/* background: #fcfcfc; */
+    /* border-radius: 5px; */
+    /* border: 1px solid #ccc; */
+	padding: .1in;
 	margin: 0;
 	padding-left: .1in;
 	padding-right: .1in;
@@ -83,8 +89,13 @@ div#ref {
 	color: #777;
 }
 
+div#ref div.package {
+    padding-top: .1in;
+}
+
 div#ref code.package {
 	color: #555;
+    padding-left: .1in;
 }
 
 div#ref ul.ref {
@@ -92,7 +103,7 @@ div#ref ul.ref {
 	margin-left: .1in;
 	margin-right: .1in;
 	margin-top: .05in;
-	margin-bottom: .2in;
+	margin-bottom: .1in;
 	padding: 0;
 	padding-left: .15in;
 
