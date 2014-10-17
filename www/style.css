@@ -35,7 +35,7 @@ div#title span.package {
 }
 
 div#annotate {
-	float: right;
+	float: left;
 	width: 300px;
 }
 
@@ -45,7 +45,7 @@ div.anno {
 	margin-right: .15in;
 	margin-top: .05in;
 	margin-bottom: .16in;
-	border-left: 1px solid #ccc;
+	border-right: 1px solid #ccc;
 }
 
 div.anno span.line {
@@ -54,13 +54,13 @@ div.anno span.line {
 }
 
 div#main {
-	margin-left: 200px;
+	margin-left: 300px;
 	width: 600px;
 }
 
 div#ref {
 	width: 200px;
-	float: left;
+	float: right;
 }
 
 textarea#code {

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="utf-8">
+<title>Coffee Blog</title>
+<style type="text/css" media="screen">
+    body {
+        margin-top: 0;
+        margin-bottom: 0;
+        margin-left: .1in;
+        margin-right: .1in;
+    } 
+    #container {
+        position: absolute;
+        margin-left: calc(50% - .1in - 300px);
+        width: 600px;
+        padding: .1in;
+    }
+    #main {
+        padding-left: .05in;
+        padding-right: .05in;
+        padding-top: .07in;
+        padding-bottom: .07in;
+        /* border-radius: 5px; */
+        /* border: 1px solid #ddd; */
+    }
+    #editor {
+        display: none;
+    }
+</style>
+</head>
+
+<body>
+<div id="container"><div id="main">
+<div id="editor">c8 = new Object()
+
+main = -&gt;
+    c8.cons = new CmdLine($(&quot;canvas#console&quot;))
+    bindInput()
+    redraw()
+    return
+
+bindInput = -&gt;
+    $(document).keypress( (ev) -&gt;
+        if ev.which in [13, 32]
+            ev.preventDefault()
+        if ev.which &gt;= 32 &amp;&amp; ev.which &lt;= 126 # printable characters
+            c8.cons.insertChar(String.fromCharCode(ev.which))
+        return
+    )
+    $(document).keydown( (ev) -&gt;
+        # console.log(ev.which)
+
+        if ev.which in [8, 46, 13, 37, 39, 9]
+            ev.preventDefault()
+        
+        if ev.which == 8 # backspace
+            c8.cons.backChar()
+        if ev.which == 46 # delete
+            c8.cons.delChar()
+        if ev.which == 13 # enter
+            c8.cons.enter()
+        if ev.which == 37 # left
+            c8.cons.moveCurLeft()
+        if ev.which == 39 # right
+            c8.cons.moveCurRight()
+        if ev.which == 9 # tab
+            c8.cons.insertTab()
+    )
+    return
+
+lastWinh = -1
+fitCanvas = -&gt;
+    c = $(&quot;canvas#console&quot;)
+    winh = $(window).height()
+    if winh != lastWinh
+        h = winh - 40
+        if h &lt; 0
+            h = 1
+        c.height(h)
+        lastWinh = winh
+    return
+
+redraw = (timestamp) -&gt;
+    fitCanvas()
+    c8.cons.redraw()
+    window.requestAnimationFrame(redraw)
+    return
+
+ms = -&gt; (new Date()).getMilliseconds()
+monos = 'Consolas, Inconsolata, Monaco, &quot;Courier New&quot;, Courier, monospace'
+makeFont = (size) -&gt; '' + size + 'px ' + monos</div></div></div>
+
+<script src="ace.js" type="text/javascript" charset="utf-8"></script>
+<script src="jquery.js" type="text/javascript" charset="utf-8"></script>
+<script>
+    var editor = ace.edit("editor");
+    editor.setTheme("ace/theme/tomorrow");
+    editor.getSession().setMode("ace/mode/coffee");
+    editor.renderer.setShowGutter(false);
+    editor.setHighlightActiveLine(false);
+    editor.setShowFoldWidgets(false);
+    editor.setDisplayIndentGuides(false);
+    editor.setReadOnly(false);
+    editor.setOptions({
+        maxLines: Infinity,
+        minLines: 5,
+        fontFamily: "Consolas, monospace",
+        fontSize: "13px",
+    });
+    $("#editor").show();
+</script>
+</body>
+
+</html>
