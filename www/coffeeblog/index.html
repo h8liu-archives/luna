@@ -109,6 +109,7 @@ makeFont = (size) -&gt; '' + size + 'px ' + monos</div></div></div>
         fontFamily: "Consolas, Inconsolata, Monaco, \"Courier New\", Courier, monospace",
         fontSize: "13px",
     });
+    editor.commands.removeCommands(["gotoline", "find"]);
     $("#editor").show();
 </script>
 </body>
